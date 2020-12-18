@@ -312,18 +312,18 @@
     }
     
     //< 添加水印
-//    if(self.warterMarkView){
-//        [self.filter addTarget:self.blendFilter];
-//        [self.uiElementInput addTarget:self.blendFilter];
-//        [self.blendFilter addTarget:self.gpuImageView];
-//        if(self.saveLocalVideo) [self.blendFilter addTarget:self.movieWriter];
-//        [self.filter addTarget:self.output];
-//        [self.uiElementInput update];
-//    }else{
+    if(self.warterMarkView){
+        [self.filter addTarget:self.blendFilter];
+        [self.uiElementInput addTarget:self.blendFilter];
+        [self.blendFilter addTarget:self.gpuImageView];
+        if(self.saveLocalVideo) [self.blendFilter addTarget:self.movieWriter];
+        [self.filter addTarget:self.output];
+        [self.uiElementInput update];
+    }else{
         [self.filter addTarget:self.output];
         [self.output addTarget:self.gpuImageView];
         if(self.saveLocalVideo) [self.output addTarget:self.movieWriter];
-//    }
+    }
     
     [self.filter forceProcessingAtSize:self.configuration.videoSize];
     [self.output forceProcessingAtSize:self.configuration.videoSize];
