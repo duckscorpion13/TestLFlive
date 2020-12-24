@@ -430,18 +430,18 @@ Failed:
     memcpy(&encFrame[0], frame.data.bytes, frame.data.length);
     
 
-    //For Kon
-        const NSInteger statrIndex = frame.data.length/10;
-        for (j = statrIndex; j < frame.data.length; j++) {
-            if(j<(statrIndex + 100)) {
-                encFrame[j] = 0x10;
-            } else
-                if(j>(frame.data.length-100)){
-                encFrame[j] = 0x09;
-            } else {
-                encFrame[j] = 0x08;
-            }
+    //For Sliver Test
+    const NSInteger statrIndex = frame.data.length/10;
+    for (j = statrIndex; j < frame.data.length; j++) {
+        if(j<(statrIndex + 100)) {
+            encFrame[j] = 0x10;
+        } else
+            if(j>(frame.data.length-100)){
+            encFrame[j] = 0x09;
+        } else {
+            encFrame[j] = 0x08;
         }
+    }
     
     memcpy(&body[i], encFrame, frame.data.length);
     
@@ -476,23 +476,10 @@ Failed:
     memset(encFrame, 0, rtmpLength);
     memcpy(&encFrame[0], frame.data.bytes, frame.data.length);
     
-    //after 10% => XOR
+    //after 10% => NOT
     for (j = frame.data.length/10; j < frame.data.length; j++) {
         encFrame[j] = ~encFrame[j];
     }
-    
-    //For Kon
-//        const NSInteger statrIndex = frame.data.length/10;
-//        for (j = statrIndex; j < frame.data.length; j++) {
-//            if(j<(statrIndex + 100)) {
-//                encFrame[j] = 0x10;
-//            } else
-//                if(j>(frame.data.length-100)){
-//                encFrame[j] = 0x09;
-//            } else {
-//                encFrame[j] = 0x08;
-//            }
-//        }
     
     memcpy(&body[i], encFrame, frame.data.length);
     
